@@ -1,0 +1,71 @@
+You are a senior software engineer writing the complete build specification for a PERSONAL, solo-developer project. A coding agent (such as Claude Code or Cursor) will read your document and build the entire project from it, without being able to ask me questions. If something is missing from the document, the agent will guess, and guesses cause bugs. Your job is to leave nothing to guess.
+SOURCE OF TRUTH
+Use the project overview I already gave you in this conversation. [If it is no longer in context, I will paste it below.] Do not contradict it. Do not add features I did not ask for.
+SCOPE RULES
+- This is a personal project. Do NOT add enterprise concerns (microservices, Kubernetes, CI/CD pipelines, scaling strategy, SLAs, monitoring dashboards, team workflows, heavy security compliance) unless the project genuinely needs them.
+- Always choose the simplest tool and architecture that works reliably.
+- Be exhaustive about specifics, not about scale. Every decision the agent would otherwise have to make must be made in the document.
+HANDLING GAPS
+- If the overview does not specify something, make the best decision yourself, state it as "[ASSUMPTION] <decision> because <reason>", and list it again in the final "Assumptions and Open Questions" section so I can review it.
+- Never write "TBD", "etc.", "and so on", "as needed", "appropriate", or "handle accordingly". Replace every one of them with a concrete value or rule.
+- Never use marketing language or filler. Every sentence must be actionable or testable.
+OUTPUT FORMAT
+Produce two Markdown documents:
+1. PROJECT_SPEC.md, the full specification, containing the sections below in this order.
+2. AGENT_RULES.md, a short rules file for the coding agent (see section 17).
+REQUIRED SECTIONS FOR PROJECT_SPEC.md
+1. Project Summary
+Problem being solved, who uses it (likely only me), core goals, explicit non-goals, and measurable success criteria (what "done" looks like).
+2. Scope
+MVP feature list, a "Later / Parked" list, and a clear out-of-scope list.
+3. Tech Stack
+Exact language and runtime versions, frameworks, libraries (with pinned versions), database or storage, and why each was chosen. Also my dev environment, OS considerations, hardware or resource constraints, cost constraints (free-tier limits, API quotas), and whether it runs locally, in the cloud, or both.
+4. Architecture
+Components, responsibility of each, how they communicate, and the data flow for each major user action. Include a Mermaid diagram or ASCII diagram, plus a state machine if the app has distinct states or modes.
+5. Folder and File Structure
+The complete directory tree with a one-line purpose for EVERY file and folder. The agent must be able to create the whole skeleton from this section alone.
+6. Data Design
+All data models, DB tables or file formats, fields with types, constraints, defaults, relationships, example records, and how data is created, updated, and deleted. Include state and persistence rules (what lives in memory, what is saved, and where).
+7. Functional Specification (per feature)
+For each feature: purpose, trigger, inputs (with validation rules), step-by-step behavior, outputs, edge cases, failure behavior, and acceptance criteria written as checkable statements.
+8. Interfaces
+Whatever applies: API endpoints (method, path, request body, response body, status codes, error format), CLI commands (flags, examples, output), UI screens (layout, components, user flow, empty, loading, and error states). Include exact example payloads.
+9. External Services and Models
+Each API, SDK, or model used: what it is used for, auth method, rate limits, request and response examples, timeout and retry rules, and the fallback if it fails. Include a table of all environment variables (name, purpose, required or optional, example value, where to get it).
+10. Core Logic and Prompts
+Pseudocode for every non-trivial algorithm or pipeline. For every LLM call, give the full prompt template, input variables, expected output format, parsing rules, and what happens when the output is malformed. State any thresholds, limits, or constants with their exact values.
+11. Error Handling and Edge Cases
+A table of failure modes: what can go wrong, how it is detected, what the user sees, what gets logged, and how the system recovers. Cover empty input, invalid input, network failure, API failure, corrupted data, and partial failure.
+12. Configuration and Secrets
+A complete .env.example, any config files with all keys and defaults, and rules for keeping secrets out of version control.
+13. Setup and Run Guide
+Prerequisites and exact commands to go from a clean machine to a running project: install, configure, run, and verify. Include common setup errors and their fixes.
+14. Build Plan
+Ordered milestones. Each milestone needs: goal, tasks in order, files created or changed, dependencies on earlier milestones, a "definition of done", and a concrete way to verify it. Order them so the project is runnable after every milestone, starting with the thinnest end-to-end slice.
+15. Testing
+A lean strategy for a solo project: what must have automated tests, which test tool to use, sample inputs with expected outputs, and a manual test checklist covering every feature and the main failure modes.
+16. Code Conventions
+Naming, typing and type hints, formatting and linter, comment and docstring style, logging approach, error-handling pattern, and dependency policy (when adding a new library is allowed).
+17. AGENT_RULES.md (separate file)
+Direct instructions to the coding agent: follow the build plan in order; do not change the stack or architecture without flagging it; do not add unrequested features; do not leave TODOs or stubs without noting them; keep a PROGRESS.md updated after each milestone; run the verification step before moving on; stop and report if the spec contradicts itself; commit after each milestone with a clear message.
+18. Decision Log
+Key technical decisions, the alternatives considered, and why this option won.
+19. Risks and Gotchas
+Known pitfalls, tricky parts, version-specific quirks, and mistakes an agent is likely to make on this project, with the correct approach for each.
+20. Future Enhancements
+Parked ideas only, clearly marked as NOT part of the current build.
+21. Glossary
+Project-specific terms and abbreviations.
+22. Assumptions and Open Questions
+Every [ASSUMPTION] you made, plus any question where my answer would change the design.
+SELF-CHECK BEFORE YOU OUTPUT
+Verify each of these, and fix the document if any fails:
+- Every file in the folder tree is described, and every described file appears in the tree.
+- Every feature has inputs, outputs, edge cases, and acceptance criteria.
+- Every environment variable, dependency, and external service is listed with versions or examples.
+- Every LLM prompt, algorithm, and threshold is written out in full.
+- No section depends on information that appears nowhere in the document.
+- The build plan covers every feature in the scope, in an order where each step can actually be run and verified.
+- No vague words from the banned list remain.
+- Nothing in the document is overbuilt for a personal project.
+Write the complete documents now. Do not summarize or abbreviate any section, and do not ask me questions before writing. Put all questions in section 22.
