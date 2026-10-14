@@ -1,0 +1,81 @@
+You are a senior software engineer and mentor. I am building a PERSONAL project for my own LEARNING. I want you to write a PROJECT BRIEF, a document whose only job is to give a coding agent (such as Claude Code or Cursor) a complete and accurate understanding of WHAT we are building and WHY.
+
+This is NOT a build specification and NOT a coding plan. The agent will read this document and then discuss the project with me. It will not write any code until I explicitly approve and tell it to start.
+
+SOURCE OF TRUTH
+Use the project overview I already gave you in this conversation. [If it is no longer in context, I will paste it below.] Do not contradict it. Do not add features I did not ask for.
+
+WHAT THIS DOCUMENT MUST NOT CONTAIN
+- No code, no pseudocode, no full file or folder trees, no step-by-step build plan, no library version pinning, no database schemas, no full prompt templates. Those belong in later documents that I will request separately.
+- No enterprise concerns (scaling, CI/CD, compliance, team workflows).
+- No marketing language or filler. Every sentence should help the agent understand the project.
+- Never write "TBD", "etc.", "and so on", or "as needed". If something is unknown, put it in the "Open Questions" section instead.
+
+HANDLING GAPS
+If the overview does not say something that matters for understanding the project, do not silently invent it. Write it as "[ASSUMPTION] <what you assumed> because <reason>" and list it again in the final section so I can confirm or correct it.
+
+OUTPUT FORMAT
+One Markdown file: PROJECT_BRIEF.md, with these sections in this order. Write in plain, clear language that both a beginner and a coding agent can follow.
+
+1. One-Paragraph Summary
+   What the project is, in plain language, readable in under 30 seconds.
+
+2. Why This Project Exists
+   The problem or motivation, and what I want out of building it. State clearly that this is a personal project for learning.
+
+3. Who Uses It and How
+   Who the user is (likely only me), the situations in which it is used, and a short walkthrough of a typical session from the user's point of view: what they do, what they see, what happens.
+
+4. Core Goals and Non-Goals
+   What the project must do, and a firm list of what it must NOT do or try to be.
+
+5. Features in Plain Language
+   Every feature I asked for, described by what it does for the user and why it matters, not by how it is implemented. Group them into "Must have (first working version)" and "Later / Parked". For each feature, give 1-2 concrete example interactions showing input and expected behavior.
+
+6. Behavior and Experience Expectations
+   How the project should feel and behave: how it responds, how it handles mistakes, what it does when it does not know something, what it must never do. Include the key rules of behavior that define the project's character.
+
+7. The Big Picture of How It Works
+   A conceptual, high-level explanation of the main parts and how they relate, in plain language with a simple diagram (Mermaid or ASCII) if it helps. Describe the parts by ROLE (for example "the part that reads the data", "the part that talks to the AI model"), not by file name. Include any distinct states or modes the project has and what triggers a change between them.
+
+8. Technology Direction and Constraints
+   The languages, tools, models, or services I have chosen or leaned toward, and why, in plain language. Include my constraints: operating system, hardware, budget or free-tier limits, whether it runs locally or in the cloud, and anything I refuse to use. Mark anything not yet decided as undecided rather than choosing for me.
+
+9. Data and Privacy Expectations
+   What kinds of data the project touches, where that data is allowed to live, and what must never leave my machine or be stored, if applicable.
+
+10. Learning Goals
+    What I want to understand by the end of this project: the key concepts, skills, and tools. This tells the agent what to emphasize when it later explains things.
+
+11. How I Want to Work With the Agent
+    My working style: I want to build step by step and understand each piece; I do not want everything generated at once; I want explanations before and after code; I want to approve decisions before they are made; I want simple, readable code over clever code.
+
+12. Definition of Done
+    What "the first working version is finished" looks like, as a short list of checkable statements. Then a separate short list of what "finished enough to learn from" means to me.
+
+13. Glossary
+    Project-specific terms and abbreviations, explained simply.
+
+14. Assumptions and Open Questions
+    Every [ASSUMPTION] you made, plus every question where my answer would change how the project is understood or designed. Number them so I can reply by number.
+
+15. Agent Protocol (this section is addressed directly to the coding agent)
+    Write this section as direct instructions:
+    - This is the PROJECT BRIEF. It describes what we are building. It is not permission to start building.
+    - Do not write, generate, or modify any code or files, and do not run any commands, until I explicitly say "start building" (or equivalent clear approval).
+    - After reading this brief, first reply with: (a) the project restated in your own words, (b) the features you understood and how they relate, (c) anything that seems unclear, contradictory, or risky, (d) questions from the Open Questions section that you think matter most, and (e) any suggestions you have, clearly labeled as suggestions and not decisions.
+    - Wait for my answers and corrections. Revise your understanding until I confirm it is correct.
+    - After I confirm the understanding, the next documents (such as the technical specification and the step-by-step build plan) will be created and approved by me before any coding begins.
+    - Never assume a decision that is not in this brief. Ask me.
+    - If this brief contradicts itself or is missing something important, say so instead of guessing.
+
+SELF-CHECK BEFORE YOU OUTPUT
+Verify each of these and fix the document if any fails:
+- Every feature from my overview appears in section 5, with example interactions.
+- The document explains WHAT and WHY everywhere, and contains no build instructions, code, or file trees.
+- A reader who knows nothing about the project could explain it back correctly after reading it once.
+- Nothing is invented without an [ASSUMPTION] tag, and every assumption appears in section 14.
+- Section 15 clearly forbids any coding or file changes until I approve.
+- The tone and size are appropriate for a personal learning project, not a large-scale product.
+
+Write the complete document now. Do not ask me questions before writing; put all questions in section 14.
