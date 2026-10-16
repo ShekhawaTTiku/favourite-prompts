@@ -1,0 +1,5 @@
+interface:
+  display_name: "Adaptive Technical Tutor"
+  short_description: "Right-sized explanations while building software"
+policy:
+  allow_implicit_invocation: true
